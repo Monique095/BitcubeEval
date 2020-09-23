@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Internship_Section2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BACourse">
+          <Key>
+            <PropertyRef Name="BAID" />
+          </Key>
+          <Property Name="BAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DegreeID" Type="int" Nullable="false" />
+          <Property Name="DegreeName" Type="nvarchar(max)" />
+          <Property Name="DurationInYears" Type="nvarchar(max)" />
+          <Property Name="Courses" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BSCourse">
+          <Key>
+            <PropertyRef Name="BSID" />
+          </Key>
+          <Property Name="BSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DegreeID" Type="int" Nullable="false" />
+          <Property Name="DegreeName" Type="nvarchar(max)" />
+          <Property Name="DurationInYears" Type="nvarchar(max)" />
+          <Property Name="Courses" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Degree">
+          <Key>
+            <PropertyRef Name="DegreeID" />
+          </Key>
+          <Property Name="DegreeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DurationInMonths" Type="int" />
+          <Property Name="Degree" Type="nvarchar(max)" />
+          <Property Name="LecturerID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lecturer">
+          <Key>
+            <PropertyRef Name="LecturerID" />
+          </Key>
+          <Property Name="LecturerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Forenames" Type="nvarchar(max)" />
+          <Property Name="Surnames" Type="nvarchar(max)" />
+          <Property Name="EmailAddress" Type="nvarchar(max)" />
+          <Property Name="DateOfBirth" Type="nvarchar(max)" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="Position" Type="nvarchar(max)" />
+          <Property Name="DegreeLe" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Forenames" Type="nvarchar(max)" />
+          <Property Name="Surnames" Type="nvarchar(max)" />
+          <Property Name="EmailAddress" Type="nvarchar(max)" />
+          <Property Name="DateOfBirth" Type="nvarchar(max)" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="Position" Type="nvarchar(max)" />
+          <Property Name="DegreeSt" Type="nvarchar(max)" />
+          <Property Name="LecturerID" Type="int" />
+        </EntityType>
+        <Association Name="FK__BACourse__Degree__3F466844">
+          <End Role="Degree" Type="Self.Degree" Multiplicity="1" />
+          <End Role="BACourse" Type="Self.BACourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degree">
+              <PropertyRef Name="DegreeID" />
+            </Principal>
+            <Dependent Role="BACourse">
+              <PropertyRef Name="DegreeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BSCourse__Degree__4222D4EF">
+          <End Role="Degree" Type="Self.Degree" Multiplicity="1" />
+          <End Role="BSCourse" Type="Self.BSCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degree">
+              <PropertyRef Name="DegreeID" />
+            </Principal>
+            <Dependent Role="BSCourse">
+              <PropertyRef Name="DegreeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Degree__Lecturer__3C69FB99">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="1" />
+          <End Role="Degree" Type="Self.Degree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="LecturerID" />
+            </Principal>
+            <Dependent Role="Degree">
+              <PropertyRef Name="LecturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__Lectur__398D8EEE">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="LecturerID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="LecturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Internship_Section2ModelStoreContainer">
+          <EntitySet Name="BACourse" EntityType="Self.BACourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BSCourse" EntityType="Self.BSCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Degree" EntityType="Self.Degree" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lecturer" EntityType="Self.Lecturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BACourse__Degree__3F466844" Association="Self.FK__BACourse__Degree__3F466844">
+            <End Role="Degree" EntitySet="Degree" />
+            <End Role="BACourse" EntitySet="BACourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BSCourse__Degree__4222D4EF" Association="Self.FK__BSCourse__Degree__4222D4EF">
+            <End Role="Degree" EntitySet="Degree" />
+            <End Role="BSCourse" EntitySet="BSCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Degree__Lecturer__3C69FB99" Association="Self.FK__Degree__Lecturer__3C69FB99">
+            <End Role="Lecturer" EntitySet="Lecturer" />
+            <End Role="Degree" EntitySet="Degree" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__Lectur__398D8EEE" Association="Self.FK__Students__Lectur__398D8EEE">
+            <End Role="Lecturer" EntitySet="Lecturer" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Internship_Section2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BACourse">
+          <Key>
+            <PropertyRef Name="BAID" />
+          </Key>
+          <Property Name="BAID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DegreeID" Type="Int32" Nullable="false" />
+          <Property Name="DegreeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DurationInYears" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Courses" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Degree" Relationship="Self.FK__BACourse__Degree__3F466844" FromRole="BACourse" ToRole="Degree" />
+        </EntityType>
+        <EntityType Name="BSCourse">
+          <Key>
+            <PropertyRef Name="BSID" />
+          </Key>
+          <Property Name="BSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DegreeID" Type="Int32" Nullable="false" />
+          <Property Name="DegreeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DurationInYears" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Courses" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Degree" Relationship="Self.FK__BSCourse__Degree__4222D4EF" FromRole="BSCourse" ToRole="Degree" />
+        </EntityType>
+        <EntityType Name="Degree">
+          <Key>
+            <PropertyRef Name="DegreeID" />
+          </Key>
+          <Property Name="DegreeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DurationInMonths" Type="Int32" />
+          <Property Name="Degree1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LecturerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BACourses" Relationship="Self.FK__BACourse__Degree__3F466844" FromRole="Degree" ToRole="BACourse" />
+          <NavigationProperty Name="BSCourses" Relationship="Self.FK__BSCourse__Degree__4222D4EF" FromRole="Degree" ToRole="BSCourse" />
+          <NavigationProperty Name="Lecturer" Relationship="Self.FK__Degree__Lecturer__3C69FB99" FromRole="Degree" ToRole="Lecturer" />
+        </EntityType>
+        <EntityType Name="Lecturer">
+          <Key>
+            <PropertyRef Name="LecturerID" />
+          </Key>
+          <Property Name="LecturerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Forenames" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surnames" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DegreeLe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Degrees" Relationship="Self.FK__Degree__Lecturer__3C69FB99" FromRole="Lecturer" ToRole="Degree" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Students__Lectur__398D8EEE" FromRole="Lecturer" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Forenames" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surnames" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DegreeSt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LecturerID" Type="Int32" />
+          <NavigationProperty Name="Lecturer" Relationship="Self.FK__Students__Lectur__398D8EEE" FromRole="Students" ToRole="Lecturer" />
+        </EntityType>
+        <Association Name="FK__BACourse__Degree__3F466844">
+          <End Role="Degree" Type="Self.Degree" Multiplicity="1" />
+          <End Role="BACourse" Type="Self.BACourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degree">
+              <PropertyRef Name="DegreeID" />
+            </Principal>
+            <Dependent Role="BACourse">
+              <PropertyRef Name="DegreeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BSCourse__Degree__4222D4EF">
+          <End Role="Degree" Type="Self.Degree" Multiplicity="1" />
+          <End Role="BSCourse" Type="Self.BSCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degree">
+              <PropertyRef Name="DegreeID" />
+            </Principal>
+            <Dependent Role="BSCourse">
+              <PropertyRef Name="DegreeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Degree__Lecturer__3C69FB99">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="1" />
+          <End Role="Degree" Type="Self.Degree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="LecturerID" />
+            </Principal>
+            <Dependent Role="Degree">
+              <PropertyRef Name="LecturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__Lectur__398D8EEE">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="LecturerID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="LecturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Internship_Section2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BACourses" EntityType="Self.BACourse" />
+          <EntitySet Name="BSCourses" EntityType="Self.BSCourse" />
+          <EntitySet Name="Degrees" EntityType="Self.Degree" />
+          <EntitySet Name="Lecturers" EntityType="Self.Lecturer" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <AssociationSet Name="FK__BACourse__Degree__3F466844" Association="Self.FK__BACourse__Degree__3F466844">
+            <End Role="Degree" EntitySet="Degrees" />
+            <End Role="BACourse" EntitySet="BACourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BSCourse__Degree__4222D4EF" Association="Self.FK__BSCourse__Degree__4222D4EF">
+            <End Role="Degree" EntitySet="Degrees" />
+            <End Role="BSCourse" EntitySet="BSCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Degree__Lecturer__3C69FB99" Association="Self.FK__Degree__Lecturer__3C69FB99">
+            <End Role="Lecturer" EntitySet="Lecturers" />
+            <End Role="Degree" EntitySet="Degrees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__Lectur__398D8EEE" Association="Self.FK__Students__Lectur__398D8EEE">
+            <End Role="Lecturer" EntitySet="Lecturers" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Internship_Section2ModelStoreContainer" CdmEntityContainer="Internship_Section2Entities">
+          <EntitySetMapping Name="BACourses">
+            <EntityTypeMapping TypeName="Internship_Section2Model.BACourse">
+              <MappingFragment StoreEntitySet="BACourse">
+                <ScalarProperty Name="BAID" ColumnName="BAID" />
+                <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+                <ScalarProperty Name="DegreeName" ColumnName="DegreeName" />
+                <ScalarProperty Name="DurationInYears" ColumnName="DurationInYears" />
+                <ScalarProperty Name="Courses" ColumnName="Courses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BSCourses">
+            <EntityTypeMapping TypeName="Internship_Section2Model.BSCourse">
+              <MappingFragment StoreEntitySet="BSCourse">
+                <ScalarProperty Name="BSID" ColumnName="BSID" />
+                <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+                <ScalarProperty Name="DegreeName" ColumnName="DegreeName" />
+                <ScalarProperty Name="DurationInYears" ColumnName="DurationInYears" />
+                <ScalarProperty Name="Courses" ColumnName="Courses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Degrees">
+            <EntityTypeMapping TypeName="Internship_Section2Model.Degree">
+              <MappingFragment StoreEntitySet="Degree">
+                <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+                <ScalarProperty Name="DurationInMonths" ColumnName="DurationInMonths" />
+                <ScalarProperty Name="Degree1" ColumnName="Degree" />
+                <ScalarProperty Name="LecturerID" ColumnName="LecturerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lecturers">
+            <EntityTypeMapping TypeName="Internship_Section2Model.Lecturer">
+              <MappingFragment StoreEntitySet="Lecturer">
+                <ScalarProperty Name="LecturerID" ColumnName="LecturerID" />
+                <ScalarProperty Name="Forenames" ColumnName="Forenames" />
+                <ScalarProperty Name="Surnames" ColumnName="Surnames" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="DegreeLe" ColumnName="DegreeLe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="Internship_Section2Model.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Forenames" ColumnName="Forenames" />
+                <ScalarProperty Name="Surnames" ColumnName="Surnames" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="DegreeSt" ColumnName="DegreeSt" />
+                <ScalarProperty Name="LecturerID" ColumnName="LecturerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

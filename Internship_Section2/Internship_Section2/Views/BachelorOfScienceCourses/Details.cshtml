@@ -1,0 +1,50 @@
+﻿@model Internship_Section2.Models.BSCourse
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BSCourse</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DegreeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Degree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DurationInYears)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DurationInYears)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Courses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Degree.Degree1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Degree.Degree1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BSID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
