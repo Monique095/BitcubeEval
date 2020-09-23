@@ -1,0 +1,72 @@
+﻿@model Internship_Section1.Models.Degree
+
+@{
+    ViewBag.Title = "Add a Degree";
+    Layout = "~/Views/Shared/LecturerView.cshtml";
+
+}
+
+<h2>Add a Degree</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.DegreeName, htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+
+
+            @Html.DropDownList("DegreeName", //Same name property in detail model, NOT THE ENUM
+                                new SelectList(Enum.GetValues(typeof(WhatDegrees))), //Enum in model
+                                "Select one",
+                                new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DegreeDuringInYears, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DegreeDuringInYears, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DegreeDuringInYears, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CoursesOfDegree, htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @using Internship_Section1.Models
+
+            @Html.DropDownList("CoursesOfDegree", //Same name property in detail model, NOT THE ENUM
+                                new SelectList(Enum.GetValues(typeof(ListOfCourses))), //Enum in model
+                                "Select one",
+                                new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CoursesOfDegree, "Other Courses which may be part of this Degree", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserID, "Lecturer:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("UserID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserID, "Choose a Lecturer", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

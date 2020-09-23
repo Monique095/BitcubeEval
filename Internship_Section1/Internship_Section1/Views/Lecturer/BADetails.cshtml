@@ -1,0 +1,85 @@
+﻿@model Internship_Section1.Models.UserDetail
+
+@{
+    ViewBag.Title = "BADetails";
+    Layout = "~/Views/Shared/LecturerView.cshtml";
+}
+
+<h2>BADetails</h2>
+
+<div>
+    <h4>UserDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Forenames)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forenames)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstnameBasedOnForename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstnameBasedOnForename)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+
+   
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LinkOfDegree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinkOfDegree)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "BAEdit", new { id = Model.UserID }) |
+    @Html.ActionLink("Back to List", "BachelorOfArts")
+</p>
