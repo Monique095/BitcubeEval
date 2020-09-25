@@ -1,0 +1,82 @@
+﻿@model Internship_Section3.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Forenames)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forenames)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surnames)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surnames)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DegreeSt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DegreeSt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lecturer.Forenames)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lecturer.Forenames)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

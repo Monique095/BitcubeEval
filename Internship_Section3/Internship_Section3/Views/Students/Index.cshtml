@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Internship_Section3.Models.Student>
+
+@{
+    ViewBag.Title = "My Students";
+}
+
+<h2>My Students in the Degree:</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Forenames)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surnames)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DegreeSt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lecturer.FullName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if (item.DegreeSt == "BachelorOfArts" || item.DegreeSt == "BachelorOfScience")
+    {
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Forenames)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surnames)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DegreeSt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lecturer.FullName)
+        </td>
+        <td>
+     
+            @Html.ActionLink("Remove Student", "Delete", new { id = item.StudentID })
+        </td>
+    </tr>
+    }
+}
+
+</table>

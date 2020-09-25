@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Internship_Section3.Models.BACourse>
+
+@{
+    ViewBag.Title = "Bachelor of Arts";
+}
+
+<h2>Bachelor of Arts</h2>
+
+<p>
+    @Html.ActionLink("Add Course", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Degree.Degree1)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Courses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DurationInYears)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Degree.Degree1)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Courses)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DurationInYears) Years
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.BAID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.BAID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.BAID })
+    </td>
+</tr>
+}
+
+</table>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Internship_Section3.Models.Degree>
+
+@{
+    ViewBag.Title = "Degrees";
+}
+
+<h2>My Degrees</h2>
+
+<p>
+    @Html.ActionLink("Add a Degree", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Lecturer.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Degree1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DurationInMonths)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Lecturer.FullName)
+    </td>
+    <td>
+        @*Degree1*@
+        @if (item.Degree1 == "BachelorOfArts")
+        {
+            @Html.ActionLink("BachelorOfArts", "Index", "BachelorOfArtsCourse")
+        }
+        @if (item.Degree1 == "BachelorOfScience")
+        {
+            @Html.ActionLink("BachelorOfScience", "Index", "BachelorOfScienceCourse")
+        }
+
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DurationInMonths) Months
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.DegreeID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.DegreeID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.DegreeID })
+    </td>
+</tr>
+}
+
+</table>
